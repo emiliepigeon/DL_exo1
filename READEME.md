@@ -180,13 +180,115 @@ Serveur démarré sur http://localhost:3000
 
 -----------------------------------------------------------
 
-VICTOIRE CELA FONCTIONNE
+VICTOIRE CELA FONCTIONNE //// AH AH AH non le convertisseur ne fonctionne pas
 
 MAINTENANT DESIGN à FAIRE.... et à afficher le résultat dans navigateur
 
 Pour lancer mon localhost je peux utiliser
 npm start
+ //////////////////////////
 
+ Convertisseur ne fonctionne  pas encore
+
+ Problème proj4 pas installer ​Installateur OSGEo4W. pour windows car je suis sous windows
+
+ https://trac.osgeo.org/osgeo4w/wiki/OSGeo4W_fr
+
+OLALA il faut que je modifie mes variables d'environnement de windows...
+Voici le guide donnée par perplexity.ia
+Je comprends que l'étape 2 concernant l'ajout de PROJ au PATH peut être délicate. Je vais vous guider de manière plus détaillée pour ajouter PROJ à votre variable d'environnement PATH sur Windows. Voici les étapes à suivre :
+
+    1 Ouvrez le menu Démarrer et tapez "variables d'environnement".
+    2 Cliquez sur "Modifier les variables d'environnement système".
+    3 Dans la fenêtre qui s'ouvre, cliquez sur le bouton "Variables d'environnement..." en bas à droite.
+    4 Dans la section "Variables système" (la partie inférieure de la fenêtre), cherchez la variable nommée 
+        "Path" et sélectionnez-la.
+    5 Cliquez sur le bouton "Modifier...".
+    6 Dans la nouvelle fenêtre, cliquez sur "Nouveau".
+    7 Ajoutez le chemin du dossier bin de PROJ. Il ressemble généralement à ceci :
+        C:\Program Files\PROJ\bin
+        (Si PROJ est installé à un autre endroit, ajustez le chemin en conséquence)
+    8 Cliquez sur "OK" pour fermer chaque fenêtre.
+    9 Fermez toutes les fenêtres de terminal ouvertes et ouvrez-en une nouvelle pour que les changements 
+        prennent effet.
+
+OK.... maintenant nouveau powershell
+
+PS C:\Users\proprietaire\Desktop\DL_exo1> $env:Path -split ';'
+C:\Python312\Scripts\
+C:\Python312\
+C:\WINDOWS\system32
+C:\WINDOWS
+C:\WINDOWS\System32\Wbem
+C:\WINDOWS\System32\WindowsPowerShell\v1.0\
+C:\WINDOWS\System32\OpenSSH\
+C:\Program Files\Git\cmd
+C:\ProgramData\ComposerSetup\bin
+C:\Program Files\Docker\Docker\resources\bin
+C:\laragon\bin\php\php-8.3
+C:\Program Files\nodejs\
+C:\ProgramData\chocolatey\bin
+C:\laragon\bin
+C:\laragon\bin\apache\httpd-2.4.54-win64-VS16\bin
+C:\laragon\bin\composer
+C:\laragon\bin\git\bin
+C:\laragon\bin\git\cmd
+C:\laragon\bin\git\mingw64\bin
+C:\laragon\bin\git\usr\bin
+C:\laragon\bin\laragon\utils
+C:\laragon\bin\mongodb\mongodb-4.0.3\bin
+C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin
+C:\laragon\bin\nginx\nginx-1.22.0
+C:\laragon\bin\ngrok
+C:\laragon\bin\nodejs\node-v18
+C:\laragon\bin\notepad++
+C:\laragon\bin\postgresql\postgresql-14.5-1\bin
+C:\laragon\bin\python\python-3.10
+C:\laragon\bin\python\python-3.10\Scripts
+C:\laragon\bin\redis\redis-x64-5.0.14.1
+C:\laragon\bin\telnet
+C:\laragon\usr\bin
+C:\Users\proprietaire\AppData\Local\Yarn\config\global\node_modules\.bin
+C:\Users\proprietaire\AppData\Roaming\Composer\vendor\bin
+C:\Users\proprietaire\scoop\shims
+C:\Users\proprietaire\AppData\Local\Microsoft\WindowsApps
+C:\Users\proprietaire\AppData\Local\Programs\Microsoft VS Code\bin
+C:\Users\proprietaire\AppData\Local\Microsoft\WindowsApps
+C:\Program Files\JetBrains\IntelliJ IDEA 2024.2.3\bin
+C:\Users\proprietaire\AppData\Roaming\npm
+
+Toujours pas le bon path dans mes variables 'environnement système'
+
+Bon nouveau probleme avec proj4
+
+pour fermer tous les processus node.js
+PowerShell en admin > menu démarrer > CAPTURE D'écran du processus
+
+POUR TESTER DANS interface graphique API navigateur
+    Pour EPSG:20350 (UTM Zone 50S, Australie) : a. X: 548314.8, Y: 7476791.8
+    b. X: 547905.0, Y: 7476800.0
+    c. X: 548095.6, Y: 7476396.0
+    d. X: 548500.0, Y: 7477000.0
+    e. X: 547800.0, Y: 7476500.0
+    Pour EPSG:4326 (WGS 84, coordonnées géographiques globales) : a. X (Longitude): 116.8915, Y (Latitude): -33.7687
+    b. X (Longitude): 116.8869, Y (Latitude): -33.7686
+    c. X (Longitude): 116.8891, Y (Latitude): -33.7723
+    d. X (Longitude): 116.8936, Y (Latitude): -33.7668
+    e. X (Longitude): 116.8857, Y (Latitude): -33.7713
+
+Pour tester votre API :
+
+    Pour convertir de EPSG:20350 à EPSG:4326 :
+        Utilisez les coordonnées du groupe 1 comme entrée.
+        Le résultat devrait être proche des coordonnées correspondantes du groupe 2.
+    Pour convertir de EPSG:4326 à EPSG:20350 :
+        Utilisez les coordonnées du groupe 2 comme entrée.
+        Le résultat devrait être proche des coordonnées correspondantes du groupe 1.
+
+
+VICTOIRE VICTOIRE VICTOIRE
+
+conversion x et y fonctionne mais pas l'inverse......
 
 
 UTIL------------------------------------------------

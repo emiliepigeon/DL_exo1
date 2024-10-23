@@ -4,31 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convertisseur de Coordonnées</title>
-    <meta http-equiv="Content-Security-Policy" 
-            content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self';">
+    <!-- Mon favicon personnalisé -->
     <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+    <!-- Ma feuille de style CSS -->
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h1>Convertisseur de Coordonnées</h1>
-    <div id="conversionForm">
-        <label for="x">Coordonnée X :</label>
-        <input type="text" id="x" placeholder="Entrez la coordonnée X">
+    <div class="container">
+        <h1>Convertisseur de Coordonnées</h1>
+        
+        <!-- Section pour la conversion X/Y vers Lat/Long -->
+        <div class="conversion-section">
+            <h2>X/Y vers Latitude/Longitude</h2>
+            <div class="input-group">
+                <!-- Champ pour la coordonnée X -->
+                <input type="text" id="x-input" placeholder="Entrez X">
+                <!-- Champ pour la coordonnée Y -->
+                <input type="text" id="y-input" placeholder="Entrez Y">
+            </div>
+            <div class="button-group">
+                <!-- Bouton pour lancer la conversion vers Lat/Long -->
+                <button id="convertToLatLong">Convertir vers Lat/Long</button>
+                <!-- Bouton pour réinitialiser les champs -->
+                <button id="resetXY" class="reset-btn">Réinitialiser</button>
+            </div>
+            <div class="result-group">
+                <!-- Champ pour afficher le résultat de latitude -->
+                <input type="text" id="lat-result" readonly>
+                <!-- Champ pour afficher le résultat de longitude -->
+                <input type="text" id="long-result" readonly>
+            </div>
+        </div>
 
-        <label for="y">Coordonnée Y :</label>
-        <input type="text" id="y" placeholder="Entrez la coordonnée Y">
+        <!-- Section pour la conversion Lat/Long vers X/Y -->
+        <div class="conversion-section">
+            <h2>Latitude/Longitude vers X/Y</h2>
+            <div class="input-group">
+                <!-- Champ pour la latitude -->
+                <input type="text" id="lat-input" placeholder="Entrez Latitude">
+                <!-- Champ pour la longitude -->
+                <input type="text" id="long-input" placeholder="Entrez Longitude">
+            </div>
+            <div class="button-group">
+                <!-- Bouton pour lancer la conversion vers X/Y -->
+                <button id="convertToXY">Convertir vers X/Y</button>
+                <!-- Bouton pour réinitialiser les champs -->
+                <button id="resetLatLong" class="reset-btn">Réinitialiser</button>
+            </div>
+            <div class="result-group">
+                <!-- Champ pour afficher le résultat X -->
+                <input type="text" id="x-result" readonly>
+                <!-- Champ pour afficher le résultat Y -->
+                <input type="text" id="y-result" readonly>
+            </div>
+        </div>
 
-        <button id="convertButton">Convertir</button>
+        <!-- Section pour l'historique des conversions -->
+        <div class="history-section">
+            <h2>Historique des Conversions</h2>
+            <table id="conversionHistory">
+                <thead>
+                    <tr>
+                        <th>De</th>
+                        <th>Vers</th>
+                        <th>Entrée 1</th>
+                        <th>Entrée 2</th>
+                        <th>Sortie 1</th>
+                        <th>Sortie 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les lignes seront ajoutées ici dynamiquement par JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <div id="result">
-        <label for="latitude">Latitude :</label>
-        <input type="text" id="latitude" readonly>
-
-        <label for="longitude">Longitude :</label>
-        <input type="text" id="longitude" readonly>
-    </div>
-
+    <!-- Mon script JavaScript -->
     <script src="/script.js"></script>
 </body>
 </html>
