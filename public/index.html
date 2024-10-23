@@ -6,63 +6,65 @@
     <title>Convertisseur de Coordonnées</title>
     <!-- Mon favicon personnalisé -->
     <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
-    <!-- Ma feuille de style CSS -->
+    <!-- Lien vers Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Lien vers ma feuille de style CSS -->
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Convertisseur de Coordonnées</h1>
+    <div class="container mt-5"> <!-- Conteneur Bootstrap pour centrer le contenu -->
+        <h1 class="text-center">Convertisseur de Coordonnées</h1>
         
-        <!-- Section pour la conversion X/Y vers Lat/Long -->
-        <div class="conversion-section">
+        <!-- Section pour la conversion X/Y vers Latitude/Longitude -->
+        <div class="conversion-section bg-light p-4 rounded shadow-sm mb-4">
             <h2>X/Y vers Latitude/Longitude</h2>
-            <div class="input-group">
+            <div class="input-group mb-3">
                 <!-- Champ pour la coordonnée X -->
-                <input type="text" id="x-input" placeholder="Entrez X">
+                <input type="text" id="x-input" class="form-control" placeholder="Entrez X">
                 <!-- Champ pour la coordonnée Y -->
-                <input type="text" id="y-input" placeholder="Entrez Y">
+                <input type="text" id="y-input" class="form-control" placeholder="Entrez Y">
             </div>
-            <div class="button-group">
-                <!-- Bouton pour lancer la conversion vers Lat/Long -->
-                <button id="convertToLatLong">Convertir vers Lat/Long</button>
+            <div class="button-group d-flex justify-content-between">
+                <!-- Bouton pour lancer la conversion vers Latitude/Longitude -->
+                <button id="convertToLatLong" class="btn btn-success">Convertir vers Lat/Long</button>
                 <!-- Bouton pour réinitialiser les champs -->
-                <button id="resetXY" class="reset-btn">Réinitialiser</button>
+                <button id="resetXY" class="btn btn-danger">Réinitialiser</button>
             </div>
-            <div class="result-group">
+            <div class="result-group mt-3">
                 <!-- Champ pour afficher le résultat de latitude -->
-                <input type="text" id="lat-result" readonly>
+                <input type="text" id="lat-result" class="form-control" readonly placeholder="Résultat Latitude">
                 <!-- Champ pour afficher le résultat de longitude -->
-                <input type="text" id="long-result" readonly>
+                <input type="text" id="long-result" class="form-control" readonly placeholder="Résultat Longitude">
             </div>
         </div>
 
-        <!-- Section pour la conversion Lat/Long vers X/Y -->
-        <div class="conversion-section">
+        <!-- Section pour la conversion Latitude/Longitude vers X/Y -->
+        <div class="conversion-section bg-light p-4 rounded shadow-sm mb-4">
             <h2>Latitude/Longitude vers X/Y</h2>
-            <div class="input-group">
+            <div class="input-group mb-3">
                 <!-- Champ pour la latitude -->
-                <input type="text" id="lat-input" placeholder="Entrez Latitude">
+                <input type="text" id="lat-input" class="form-control" placeholder="Entrez Latitude">
                 <!-- Champ pour la longitude -->
-                <input type="text" id="long-input" placeholder="Entrez Longitude">
+                <input type="text" id="long-input" class="form-control" placeholder="Entrez Longitude">
             </div>
-            <div class="button-group">
+            <div class="button-group d-flex justify-content-between">
                 <!-- Bouton pour lancer la conversion vers X/Y -->
-                <button id="convertToXY">Convertir vers X/Y</button>
+                <button id="convertToXY" class="btn btn-success">Convertir vers X/Y</button>
                 <!-- Bouton pour réinitialiser les champs -->
-                <button id="resetLatLong" class="reset-btn">Réinitialiser</button>
+                <button id="resetLatLong" class="btn btn-danger">Réinitialiser</button>
             </div>
-            <div class="result-group">
+            <div class="result-group mt-3">
                 <!-- Champ pour afficher le résultat X -->
-                <input type="text" id="x-result" readonly>
+                <input type="text" id="x-result" class="form-control" readonly placeholder="Résultat X">
                 <!-- Champ pour afficher le résultat Y -->
-                <input type="text" id="y-result" readonly>
+                <input type="text" id="y-result" class="form-control" readonly placeholder="Résultat Y">
             </div>
         </div>
 
         <!-- Section pour l'historique des conversions -->
-        <div class="history-section">
+        <div class="history-section bg-light p-4 rounded shadow-sm">
             <h2>Historique des Conversions</h2>
-            <table id="conversionHistory">
+            <table id="conversionHistory" class="table table-bordered table-striped mt-3">
                 <thead>
                     <tr>
                         <th>De</th>
@@ -78,8 +80,12 @@
                 </tbody>
             </table>
         </div>
-    </div>
 
+    </div> <!-- Fin du conteneur principal -->
+
+    <!-- Lien vers jQuery et Bootstrap JS (pour les composants interactifs si nécessaire) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
     <!-- Mon script JavaScript -->
     <script src="/script.js"></script>
 </body>
