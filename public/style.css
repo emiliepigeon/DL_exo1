@@ -1,8 +1,17 @@
-/* styles.css */
+/* Déclaration des variables globales */
+:root {
+    --primary-color: #4CAF50; /* Couleur principale pour les boutons de conversion */
+    --danger-color: #f44336; /* Couleur pour les boutons de réinitialisation */
+    --background-color: #030620; /* Couleur de fond de la page */
+    --table-bg-color: #0f172a; /* Couleur de fond pour le tableau */
+    --light-bg-color: #ffffff; /* Couleur de fond pour les sections */
+    --text-color: #ffffff; /* Couleur du texte principal (blanc pour contraste) */
+}
 
 /* Style général du corps de la page */
-body {
-    background-color: #f4f4f4; /* Fond gris clair pour un contraste doux */
+#page {
+    background-color: #030620; /* Utilisation de la variable pour le fond */
+    font-family: var(--font-family); /* Utilisation de la variable pour la police */
 }
 
 /* Conteneur principal pour limiter la largeur du contenu */
@@ -12,7 +21,7 @@ body {
 
 /* Style des titres */
 h1, h2 {
-    color: #333; /* Couleur des titres */
+    color: var(--text-color); /* Utilisation de la variable pour la couleur du texte */
 }
 
 /* Style des sections de conversion */
@@ -25,7 +34,7 @@ h1, h2 {
     margin-bottom: 10px; /* Espace entre les groupes */
 }
 
-/* Style des boutons de réinitialisation */
+/* Style spécifique pour les boutons de réinitialisation */
 .reset-btn {
     margin-left: 10px; /* Espace entre le bouton de conversion et le bouton de réinitialisation */
 }
@@ -38,7 +47,8 @@ h1, h2 {
 /* Style du tableau d'historique */
 #conversionHistory {
     width: 100%; /* Pleine largeur pour le tableau */
-    border-collapse: collapse; /* Enlève l'espace entre les bordures de table */
+    background-color: var(--table-bg-color); /* Utilisation de la variable pour le fond du tableau */
+    color: var(--text-color); /* Utilisation de la variable pour la couleur du texte dans le tableau */
 }
 
 #conversionHistory th, #conversionHistory td {
@@ -47,15 +57,9 @@ h1, h2 {
 }
 
 #conversionHistory th {
-    background-color: #f2f2f2; /* Fond gris clair pour les en-têtes */
-    font-weight: bold; /* Gras pour les en-têtes */
+    background-color: var(--table-bg-color); /* Fond sombre pour les en-têtes du tableau avec la même couleur que le tableau */
 }
 
 #conversionHistory tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternance de couleurs pour les lignes du tableau */
-}
-
-/* Style pour les cellules du tableau (empêche le texte de se déformer) */
-#conversionHistory td {
-    white-space: nowrap; /* Empêche le texte de se déformer dans les cellules */
+    background-color: #1a1a1a; /* Alternance de couleurs plus claires pour les lignes paires du tableau */
 }

@@ -1,9 +1,9 @@
 // src/app.js
 
 // Importation des modules nécessaires pour mon application Express
-const express = require('express'); // Framework web pour Node.js qui facilite la création d'applications web
+const express = require('express'); // Framework web pour Node.js
 const bodyParser = require('body-parser'); // Middleware pour parser le corps des requêtes HTTP en JSON
-const path = require('path'); // Permet de gérer correctement les chemins vers les fichiers et dossiers
+const path = require('path'); // Permet de gérer les chemins vers les fichiers
 const proj4 = require('proj4'); // Bibliothèque pour la conversion de systèmes de coordonnées géographiques
 
 // Création de mon application Express
@@ -14,7 +14,7 @@ const port = 3000; // Port sur lequel mon serveur va écouter
 app.use(bodyParser.json());
 
 // Configuration pour servir mes fichiers statiques depuis le dossier public (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public'))); // Sert tous les fichiers dans le dossier public
 
 // Définition des systèmes de coordonnées que j'utilise dans mon API
 proj4.defs("EPSG:20350", "+proj=utm +zone=50 +south +ellps=aust_SA +units=m +no_defs"); // Système UTM Zone 50S
@@ -22,7 +22,7 @@ proj4.defs("EPSG:4326", "+proj=longlat +datum=WGS84 +no_defs"); // Système WGS 
 
 // Fonction générique pour convertir des coordonnées entre différents systèmes de référence spatiale
 function convertCoordinates(x, y, fromCRS, toCRS) {
-    return proj4(fromCRS, toCRS, [parseFloat(x), parseFloat(y)]); // Retourne les coordonnées converties en utilisant proj4
+    return proj4(fromCRS, toCRS, [parseFloat(x), parseFloat(y)]); // Retourne les coordonnées converties
 }
 
 // Route API pour la conversion des coordonnées via une requête POST

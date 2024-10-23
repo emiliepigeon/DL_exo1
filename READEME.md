@@ -290,10 +290,63 @@ VICTOIRE VICTOIRE VICTOIRE
 
 conversion x et y fonctionne mais pas l'inverse......
 
+VICTOIRE TOTALE
 
+Maintenant je vais utiliser bootstrap 5.3 pour faciliter le design
+
+/////////////////////////////////////////
+
+STRUCTURE PROJET
+
+/DL_EXO1
+├── node_modules
+├── public
+│   ├── index.html
+│   ├── styles.css
+│   ├── script.js
+│   └── assets
+│       └── images
+│           └── favicon.png
+├── src
+│   ├── convert.js
+│   └── app.js
+└── data
+    └── input.csv
+
+
+    ERREUR dans navigateur une partie du stylen'est pas prisen compte.
+    Stop pour aujourd'hui pourcet exo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+///////////DOCUMENTATION/////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 UTIL------------------------------------------------
 Documentation utile
 
     Documentation officielle de Node.js : https://nodejs.org/fr/docs/
 
     Guide de démarrage VS Code avec Node.js : https://code.visualstudio.com/docs/nodejs/nodejs-tutorial
+
+    EXPRESS JS https://expressjs.com/fr/
+
+    BOOTSTRAP https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+::::::
+
+Liens Utiles
+
+    Proj4js Documentation:
+        Proj4js Official Documentation
+        Cette documentation fournit des informations sur l'installation, l'utilisation et les fonctionnalités de la bibliothèque Proj4js pour la transformation des coordonnées.
+    PROJ Documentation:
+        PROJ 5.1.0 Documentation
+        Documentation officielle du projet PROJ, qui inclut des détails sur les transformations géodésiques et les projections cartographiques.
+    CRAN: Package proj4:
+        CRAN Package proj4
+        Une interface simple à la bibliothèque de projections cartographiques PROJ.4 pour R.
+    GitHub Repository for PROJ:
+        dtutic/proj.4 GitHub Repository
+        Le dépôt GitHub du projet PROJ, qui contient le code source et les informations sur les versions.
+    Node.js and Express MIME Types:
+        Serving Correct MIME Types with Node and Express
+        Cet article explique comment configurer correctement votre serveur Node.js pour servir des fichiers avec les bons types MIME, ce qui peut aider à résoudre vos problèmes de chargement de fichiers CSS et JS.
