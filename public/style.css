@@ -1,4 +1,4 @@
-/* Déclaration des variables globales */
+/* Déclaration des variables globales pour que cela soit plus simple à modifier */
 :root {
     --primary-color: #4CAF50; /* Couleur principale pour les boutons de conversion */
     --danger-color: #f44336; /* Couleur pour les boutons de réinitialisation */
