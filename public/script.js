@@ -107,12 +107,18 @@ function updateHistoryTable() {
         const row = tableBody.insertRow();  // Crée une nouvelle ligne dans le tableau
 
         row.innerHTML = `
-            <td>${entry.from}</td> <!-- Colonne "De", affiche d'où provient cette conversion -->
-            <td>${entry.to}</td> <!-- Colonne "Vers", affiche vers où va cette conversion -->
-            <td>${entry.input1.type}: ${entry.input1.value}</td> <!-- Colonne "Entrée 1", affiche son type et sa valeur -->
-            <td>${entry.input2.type}: ${entry.input2.value}</td> <!-- Colonne "Entrée 2", affiche son type et sa valeur -->
-            <td>${entry.output1.type}: ${entry.output1.value}</td> <!-- Colonne "Sortie 1", affiche son type et sa valeur -->
-            <td>${entry.output2.type}: ${entry.output2.value}</td> <!-- Colonne "Sortie 2", affiche son type et sa valeur -->
+            <td>${entry.from}</td> 
+                <!-- Colonne "De", affiche d'où provient cette conversion -->
+            <td>${entry.to}</td> 
+                <!-- Colonne "Vers", affiche vers où va cette conversion -->
+            <td>${entry.input1.type}: ${entry.input1.value}
+                </td> <!-- Colonne "Entrée 1", affiche son type et sa valeur -->
+            <td>${entry.input2.type}: ${entry.input2.value}</td> 
+                <!-- Colonne "Entrée 2", affiche son type et sa valeur -->
+            <td>${entry.output1.type}: ${entry.output1.value}</td> 
+                <!-- Colonne "Sortie 1", affiche son type et sa valeur -->
+            <td>${entry.output2.type}: ${entry.output2.value}</td> 
+                <!-- Colonne "Sortie 2", affiche son type et sa valeur -->
         `;
     });
 }
