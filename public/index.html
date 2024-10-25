@@ -4,95 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convertisseur de Coordonnées</title>
-    <!-- Mon favicon personnalisé -->
-    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon"> <!-- Chemin vers le favicon -->
-    <!-- Lien vers Bootstrap CSS pour le style -->
+    <!-- Mon favicon personnalisé pour donner une identité visuelle à mon site -->
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+    <!-- J'utilise Bootstrap pour avoir une base de style responsive -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Lien vers ma feuille de style CSS -->
-    <link rel="stylesheet" href="style.css"> <!-- Chemin relatif car dans le même dossier public -->
+    <!-- Ma feuille de style personnalisée pour ajuster l'apparence selon mes besoins -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body id="page">
-    <div class="container mt-5"> <!-- Conteneur Bootstrap pour centrer le contenu -->
-        <div class="row justify-content-center"> <!-- Centrer les colonnes -->
-            <div class="col-md-8 col-lg-6"> <!-- Largeur du conteneur sur différents écrans -->
-                <h1 class="text-center">Convertisseur de Coordonnées</h1>
-                
-                <!-- Section pour la conversion X/Y vers Latitude/Longitude -->
-                <div class="conversion-section bg-light p-4 rounded shadow-sm mb-4">
+    <div class="container mt-5">
+        <!-- Nouveau tableau pour afficher les données converties -->
+        <div class="converted-data-section mb-4">
+            <h2 class="text-white">Données CSV Converties</h2>
+            <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                <table id="convertedDataTable" class="table table-bordered table-striped">
+                    <thead>
+                        <!-- Les en-têtes seront ajoutés dynamiquement par JavaScript -->
+                    </thead>
+                    <tbody>
+                        <!-- Les données seront ajoutées dynamiquement par JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Titre principal de ma page -->
+        <h1 class="text-center text-white mb-4">Convertisseur de Coordonnées</h1>
+        
+        <!-- Je crée une rangée pour mes deux modules de conversion -->
+        <div class="row">
+            <!-- Module de conversion X/Y vers Latitude/Longitude -->
+            <div class="col-md-6 mb-4">
+                <div class="conversion-module">
                     <h2>X/Y vers Latitude/Longitude</h2>
-                    <div class="input-group mb-3">
-                        <!-- Champ pour la coordonnée X -->
-                        <input type="text" id="x-input" class="form-control" placeholder="Entrez X">
-                        <!-- Champ pour la coordonnée Y -->
-                        <input type="text" id="y-input" class="form-control" placeholder="Entrez Y">
+                    <div class="input-group mb-3 d-flex justify-content-between">
+                        <input type="text" id="x-input" class="form-control custom-input me-2" placeholder="Entrez X">
+                        <input type="text" id="y-input" class="form-control custom-input" placeholder="Entrez Y">
                     </div>
-                    <div class="button-group d-flex justify-content-between">
-                        <!-- Bouton pour lancer la conversion vers Latitude/Longitude -->
-                        <button id="convertToLatLong" class="btn btn-success">Convertir vers Lat/Long</button>
-                        <!-- Bouton pour réinitialiser les champs -->
-                        <button id="resetXY" class="btn btn-danger">Réinitialiser</button>
+                    <div class="button-group d-flex justify-content-between mb-3">
+                        <button id="convertToLatLong" class="btn btn-custom">Convertir vers Lat/Long</button>
+                        <button id="resetXY" class="btn btn-custom-reset">Réinitialiser</button>
                     </div>
-                    <div class="result-group mt-3">
-                        <!-- Champ pour afficher le résultat de latitude -->
-                        <input type="text" id="lat-result" class="form-control" readonly placeholder="Résultat Latitude">
-                        <!-- Champ pour afficher le résultat de longitude -->
-                        <input type="text" id="long-result" class="form-control" readonly placeholder="Résultat Longitude">
+                    <div class="result-group d-flex justify-content-between">
+                        <input type="text" id="lat-result" class="form-control custom-input me-2" readonly placeholder="Résultat Latitude">
+                        <input type="text" id="long-result" class="form-control custom-input" readonly placeholder="Résultat Longitude">
                     </div>
                 </div>
+            </div>
 
-                <!-- Section pour la conversion Latitude/Longitude vers X/Y -->
-                <div class="conversion-section bg-light p-4 rounded shadow-sm mb-4">
+            <!-- Module de conversion Latitude/Longitude vers X/Y -->
+            <div class="col-md-6 mb-4">
+                <div class="conversion-module">
                     <h2>Latitude/Longitude vers X/Y</h2>
-                    <div class="input-group mb-3">
-                        <!-- Champ pour la latitude -->
-                        <input type="text" id="lat-input" class="form-control" placeholder="Entrez Latitude">
-                        <!-- Champ pour la longitude -->
-                        <input type="text" id="long-input" class="form-control" placeholder="Entrez Longitude">
+                    <div class="input-group mb-3 d-flex justify-content-between">
+                        <input type="text" id="lat-input" class="form-control custom-input me-2" placeholder="Entrez Latitude">
+                        <input type="text" id="long-input" class="form-control custom-input" placeholder="Entrez Longitude">
                     </div>
-                    <div class="button-group d-flex justify-content-between">
-                        <!-- Bouton pour lancer la conversion vers X/Y -->
-                        <button id="convertToXY" class="btn btn-success">Convertir vers X/Y</button>
-                        <!-- Bouton pour réinitialiser les champs -->
-                        <button id="resetLatLong" class="btn btn-danger">Réinitialiser</button>
+                    <div class="button-group d-flex justify-content-between mb-3">
+                        <button id="convertToXY" class="btn btn-custom">Convertir vers X/Y</button>
+                        <button id="resetLatLong" class="btn btn-custom-reset">Réinitialiser</button>
                     </div>
-                    <div class="result-group mt-3">
-                        <!-- Champ pour afficher le résultat X -->
-                        <input type="text" id="x-result" class="form-control" readonly placeholder="Résultat X">
-                        <!-- Champ pour afficher le résultat Y -->
-                        <input type="text" id="y-result" class="form-control" readonly placeholder="Résultat Y">
+                    <div class="result-group d-flex justify-content-between">
+                        <input type="text" id="x-result" class="form-control custom-input me-2" readonly placeholder="Résultat X">
+                        <input type="text" id="y-result" class="form-control custom-input" readonly placeholder="Résultat Y">
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Section pour l'historique des conversions -->
-                <div class="history-section bg-light p-4 rounded shadow-sm">
-                    <h2>Historique des Conversions</h2>
-                    <button id="resetHistory" class="btn btn-danger mb-3">Effacer l'historique</button> <!-- Nouveau bouton -->
-                    <table id="conversionHistory" class="table table-bordered table-striped mt-3">
-                        <thead>
-                            <tr>
-                                <th>De</th>
-                                <th>Vers</th>
-                                <th>Entrée 1</th>
-                                <th>Entrée 2</th>
-                                <th>Sortie 1</th>
-                                <th>Sortie 2</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Les lignes seront ajoutées ici dynamiquement par JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
+        <!-- Section pour l'historique des conversions -->
+        <div class="history-section p-4 rounded shadow-sm">
+            <h2 class="text-white">Historique des Conversions</h2>
+            <button id="resetHistory" class="btn btn-custom-reset mb-3">Effacer l'historique</button>
+            <table id="conversionHistory" class="table table-bordered table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>De</th>
+                        <th>Vers</th>
+                        <th>Entrée 1</th>
+                        <th>Entrée 2</th>
+                        <th>Sortie 1</th>
+                        <th>Sortie 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les lignes du tableau seront ajoutées dynamiquement par JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-            </div> <!-- Fin de la colonne centrée -->
-        </div> <!-- Fin de la ligne centrée -->
-
-    </div> <!-- Fin du conteneur principal -->
-
-    <!-- Lien vers jQuery et Bootstrap JS (pour les composants interactifs si nécessaire) -->
-    <script src=https://code.jquery.com/jquery-3.6.0.min.js></script> 
-    <script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js></script> 
-    <!-- Mon script JavaScript dans le dossier public -->
-    <script src="script.js"></script> 
+    <!-- J'inclus jQuery pour faciliter certaines manipulations DOM si nécessaire -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- J'inclus Bootstrap JS pour les fonctionnalités interactives de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Mon script JavaScript personnalisé pour la logique de l'application -->
+    <script src="script.js"></script>
 </body>
 </html>

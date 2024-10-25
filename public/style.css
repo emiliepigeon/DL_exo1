@@ -1,65 +1,100 @@
-/* Déclaration des variables globales pour que cela soit plus simple à modifier */
+/* Je définis mes variables globales pour une cohérence visuelle et une facilité de modification */
 :root {
-    --primary-color: #4CAF50; /* Couleur principale pour les boutons de conversion */
-    --danger-color: #f44336; /* Couleur pour les boutons de réinitialisation */
-    --background-color: #030620; /* Couleur de fond de la page */
-    --table-bg-color: #0f172a; /* Couleur de fond pour le tableau */
-    --light-bg-color: #ffffff; /* Couleur de fond pour les sections */
-    --text-color: #ffffff; /* Couleur du texte principal (blanc pour contraste) */
+    --primary-color: #4CAF50;
+    --danger-color: #f44336;
+    --background-color: #030620;
+    --module-bg-color: #0f172a;
+    --table-bg-color: #0f172a;
+    --light-bg-color: #ffffff;
+    --text-color: #ffffff;
+    --border-color: #ffffff;
 }
 
-/* Style général du corps de la page */
+/* Je définis le style général de ma page */
 #page {
-    background-color: #030620; /* Utilisation de la variable pour le fond */
-    font-family: var(--font-family); /* Utilisation de la variable pour la police */
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
 }
 
-/* Conteneur principal pour limiter la largeur du contenu */
+/* Je centre mon contenu principal et ajoute un espacement en haut */
 .container {
-    margin-top: 20px; /* Espace en haut du conteneur */
+    margin-top: 20px;
 }
 
-/* Style des titres */
+/* Je définis le style de mes titres pour qu'ils soient bien visibles */
 h1, h2 {
-    color: var(--text-color); /* Utilisation de la variable pour la couleur du texte */
+    color: var(--text-color);
 }
 
-/* Style des sections de conversion */
-.conversion-section {
-    margin-bottom: 20px; /* Espace entre les sections */
+/* Je stylise mes modules de conversion pour qu'ils ressortent sur le fond */
+.conversion-module {
+    background-color: var(--module-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
-/* Style des groupes d'entrées, de résultats et de boutons */
-.input-group, .result-group, .button-group {
-    margin-bottom: 10px; /* Espace entre les groupes */
+/* J'ajoute un espacement entre mes groupes d'éléments pour une meilleure lisibilité */
+.input-group, .button-group, .result-group {
+    margin-bottom: 15px;
 }
 
-/* Style spécifique pour les boutons de réinitialisation */
-.reset-btn {
-    margin-left: 10px; /* Espace entre le bouton de conversion et le bouton de réinitialisation */
+/* Je personnalise l'apparence de mes champs de saisie */
+.custom-input {
+    background-color: var(--light-bg-color);
+    color: #000000;
+    border: 1px solid var(--border-color);
 }
 
-/* Style de la section historique */
+/* Je définis le style de mes boutons personnalisés */
+.btn-custom {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+}
+
+/* Je définis le style de mes boutons de réinitialisation */
+.btn-custom-reset {
+    background-color: var(--danger-color);
+    color: var(--text-color);
+    border: none;
+}
+
+/* Je stylise ma section d'historique pour qu'elle s'intègre bien avec le reste */
 .history-section {
-    margin-top: 30px; /* Espace au-dessus de la section historique */
+    margin-top: 30px;
+    background-color: var(--module-bg-color);
+    color: var(--text-color);
 }
 
-/* Style du tableau d'historique */
+/* Je personnalise l'apparence de mon tableau d'historique */
 #conversionHistory {
-    width: 100%; /* Pleine largeur pour le tableau */
-    background-color: var(--table-bg-color); /* Utilisation de la variable pour le fond du tableau */
-    color: var(--text-color); /* Utilisation de la variable pour la couleur du texte dans le tableau */
+    width: 100%;
+    background-color: var(--table-bg-color);
+    color: var(--text-color);
 }
 
+/* Je définis le style des cellules de mon tableau */
 #conversionHistory th, #conversionHistory td {
-    padding: 8px; /* Espacement interne des cellules */
-    text-align: left; /* Texte aligné à gauche dans les cellules */
+    padding: 8px;
+    text-align: left;
+    border-color: var(--border-color);
 }
 
+/* Je différencie visuellement l'en-tête de mon tableau */
 #conversionHistory th {
-    background-color: var(--table-bg-color); /* Fond sombre pour les en-têtes du tableau avec la même couleur que le tableau */
+    background-color: var(--module-bg-color);
 }
 
+/* J'alterne les couleurs de fond des lignes de mon tableau pour une meilleure lisibilité */
 #conversionHistory tr:nth-child(even) {
-    background-color: #1a1a1a; /* Alternance de couleurs plus claires pour les lignes paires du tableau */
+    background-color: #1a1a1a;
+}
+
+/* Je personnalise l'espacement entre les champs de saisie et de résultat */
+.input-group .custom-input:first-child,
+.result-group .custom-input:first-child {
+    margin-right: 10px; /* J'ajoute un espacement à droite du premier champ */
 }

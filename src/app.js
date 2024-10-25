@@ -1,58 +1,78 @@
-// src/app.js
+/*
+Ma logique pour ce fichier app.js :
 
-// Importation des modules nécessaires pour mon application Express
-const express = require('express'); // Framework web pour Node.js
-const bodyParser = require('body-parser'); // Middleware pour parser le corps des requêtes HTTP en JSON
-const path = require('path'); // Permet de gérer les chemins vers les fichiers
-const proj4 = require('proj4'); // Bibliothèque pour la conversion de systèmes de coordonnées géographiques
+Ce fichier est le cerveau de mon serveur. Il a pour mission de :
+1. Configurer mon application Express pour qu'elle soit prête à recevoir des requêtes
+2. Définir les routes pour que mon application sache quoi faire quand on lui demande quelque chose
+3. Gérer la conversion des coordonnées quand on le lui demande
+4. Lire et servir les données CSV converties pour les afficher dans mon tableau sur la page web
+5. Démarrer le serveur et le faire écouter sur un port spécifique
 
-// Création de mon application Express
+C'est comme si je créais un petit robot qui sait répondre à différentes questions et demandes !
+*/
+
+// J'importe tous les outils dont j'ai besoin pour mon serveur
+const express = require('express'); // Mon framework web préféré pour créer des serveurs
+const bodyParser = require('body-parser'); // Pour comprendre facilement les données envoyées par les utilisateurs
+const path = require('path'); // Pour gérer les chemins de fichiers facilement
+const proj4 = require('proj4'); // Ma boîte à outils magique pour convertir les coordonnées
+const fs = require('fs').promises; // Pour lire et écrire des fichiers de manière moderne
+const { convertCSVData } = require('./convert'); // Ma fonction spéciale pour convertir les données CSV
+
+// Je crée mon application serveur
 const app = express();
-const port = 3000; // Port sur lequel mon serveur va écouter
+const port = 3000; // Le numéro de la porte où mon serveur va écouter
 
-// Middleware pour parser le JSON dans les requêtes entrantes
+// Je dis à mon serveur comment comprendre les données qu'on lui envoie
 app.use(bodyParser.json());
 
-// Configuration pour servir mes fichiers statiques depuis le dossier public (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, '..', 'public'))); // Sert tous les fichiers dans le dossier public
+// Je dis à mon serveur où trouver mes fichiers HTML, CSS et JavaScript
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// Définition des systèmes de coordonnées que j'utilise dans mon API
-proj4.defs("EPSG:20350", "+proj=utm +zone=50 +south +ellps=aust_SA +units=m +no_defs"); // Système UTM Zone 50S
-proj4.defs("EPSG:4326", "+proj=longlat +datum=WGS84 +no_defs"); // Système WGS 84 (longitude/latitude)
+// Je définis les systèmes de coordonnées que je vais utiliser
+proj4.defs("EPSG:20350", "+proj=utm +zone=50 +south +ellps=aust_SA +units=m +no_defs");
+proj4.defs("EPSG:4326", "+proj=longlat +datum=WGS84 +no_defs");
 
-// Fonction générique pour convertir des coordonnées entre différents systèmes de référence spatiale
+// Ma fonction pour convertir les coordonnées d'un système à un autre
 function convertCoordinates(x, y, fromCRS, toCRS) {
-    return proj4(fromCRS, toCRS, [parseFloat(x), parseFloat(y)]); // Retourne les coordonnées converties
+    return proj4(fromCRS, toCRS, [parseFloat(x), parseFloat(y)]);
 }
 
-// Route API pour la conversion des coordonnées via une requête POST
+// Quand quelqu'un demande de convertir des coordonnées, mon serveur fait ça
 app.post('/convert', (req, res) => {
-    const { x, y, fromCRS, toCRS } = req.body; // Récupération des données envoyées dans la requête
+    const { x, y, fromCRS, toCRS } = req.body;
 
-    // Vérification que tous les paramètres nécessaires sont présents dans la requête
     if (x === undefined || y === undefined || !fromCRS || !toCRS) {
-        return res.status(400).json({ error: 'Paramètres manquants ou invalides' }); // Retourne une erreur si les paramètres sont invalides
+        return res.status(400).json({ error: 'Il me manque des informations pour faire la conversion' });
     }
 
     try {
-        // Conversion des coordonnées en appelant ma fonction générique et en renvoyant le résultat au client
         const [newX, newY] = convertCoordinates(x, y, fromCRS, toCRS);
-        res.json({ x: newX, y: newY }); // Envoie les nouvelles coordonnées au format JSON en réponse à la requête
+        res.json({ x: newX, y: newY });
     } catch (error) {
-        console.error('Erreur de conversion:', error); // Affiche une erreur dans la console si une exception est levée lors de la conversion
-        res.status(500).json({ error: 'Erreur lors de la conversion: ' + error.message }); // Retourne une erreur serveur au client
+        console.error('Oups, je n\'ai pas réussi à faire la conversion:', error);
+        res.status(500).json({ error: 'Désolé, je n\'ai pas pu faire la conversion: ' + error.message });
     }
 });
 
-// Gestion des erreurs liées au parsing JSON par body-parser
-app.use((err, req, res, next) => {
-    if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
-        return res.status(400).json({ error: 'JSON invalide' }); // Retourne une erreur si le JSON est malformé dans la requête
+// Nouvelle route pour servir les données converties
+app.get('/converted-data', async (req, res) => {
+    try {
+        const dataPath = path.join(__dirname, '..', 'data', 'converted_data.json');
+        const data = await fs.readFile(dataPath, 'utf8');
+        res.json(JSON.parse(data));
+    } catch (error) {
+        console.error("Oh non ! Je n'arrive pas à lire les données converties :", error);
+        res.status(500).json({ error: 'Impossible de lire les données converties' });
     }
-    next(); // Passe à l'étape suivante si aucune erreur n'est détectée
 });
 
-// Démarrage de mon serveur sur le port spécifié et affichage d'un message dans la console indiquant que le serveur est opérationnel
-app.listen(port, () => {
-    console.log(`Serveur démarré sur http://localhost:${port}`); 
+// Je lance la conversion des données CSV au démarrage du serveur
+convertCSVData().then(() => {
+    console.log("Super ! J'ai converti les données CSV avec succès !");
+    app.listen(port, () => {
+        console.log(`Super ! Mon serveur est prêt sur http://localhost:${port}`);
+    });
+}).catch((error) => {
+    console.error("Oh non ! Il y a eu un problème lors de la conversion des données CSV :", error);
 });
