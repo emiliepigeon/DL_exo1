@@ -14,20 +14,22 @@
 <body id="page">
     <div class="container mt-5">
         <!-- Nouveau tableau pour afficher les données converties -->
-        <div class="converted-data-section mb-4">
-            <h2 class="text-white">Données CSV Converties</h2>
-            <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
-                <table id="convertedDataTable" class="table table-bordered table-striped">
-                    <thead>
-                        <!-- Les en-têtes seront ajoutés dynamiquement par JavaScript -->
-                    </thead>
-                    <tbody>
-                        <!-- Les données seront ajoutées dynamiquement par JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="converted-data-section mb-4">
+    <h2 class="text-white">Données CSV Converties</h2>
+    <div class="table-responsive" style="max-height: 300px; overflow-y: scroll;">
+        <table id="convertedDataTable" class="table table-bordered table-striped">
+            <thead>
+                <!-- Les en-têtes seront ajoutés dynamiquement par JavaScript -->
+            </thead>
+            <tbody>
+                <!-- Les données seront ajoutées dynamiquement par JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
         
+        
+
         <!-- Titre principal de ma page -->
         <h1 class="text-center text-white mb-4">Convertisseur de Coordonnées</h1>
         
